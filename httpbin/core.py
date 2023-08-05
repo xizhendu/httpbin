@@ -342,6 +342,7 @@ def view_passwords():
       200:
         description: A groups of random strings.
     """
+
     n = 1
     max = 10
     _passwords = dict()
