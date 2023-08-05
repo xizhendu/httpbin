@@ -88,20 +88,21 @@ app.config["JSONIFY_PRETTYPRINT_REGULAR"] = True
 
 app.add_template_global("HTTPBIN_TRACKING" in os.environ, name="tracking_enabled")
 
-app.config["SWAGGER"] = {"title": "httpbin.cn", "uiversion": 3}
+app.config["SWAGGER"] = {"title": "httpbin.org", "uiversion": 3}
 
 template = {
     "swagger": "2.0",
     "info": {
-        "title": "httpbin.cn",
+        "title": "httpbin.org",
         "description": (
-            "<br/> <br/> <code>A simple HTTP Request & Response Service.</code>"
+            "A simple HTTP Request & Response Service."
+            "<br/> <br/> <b>Run locally: </b> <code>$ docker run -p 80:80 kennethreitz/httpbin</code>"
         ),
         "contact": {
-            "responsibleOrganization": "Xizhen Du",
-            "responsibleDeveloper": "Xizhen Du",
-            "email": "me@httpbin.cn",
-            "url": "https://httpbin.cn",
+            "responsibleOrganization": "Kenneth Reitz",
+            "responsibleDeveloper": "Kenneth Reitz",
+            "email": "me@kennethreitz.org",
+            "url": "https://kennethreitz.org",
         },
         # "termsOfService": "http://me.com/terms",
         "version": version,
