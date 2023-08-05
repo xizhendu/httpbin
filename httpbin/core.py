@@ -33,6 +33,8 @@ from werkzeug.wrappers import BaseResponse
 from werkzeug.http import parse_authorization_header
 from flasgger import Swagger, NO_SANITIZER
 
+from common.random import random_password
+
 from . import filters
 from .helpers import (
     get_headers,
@@ -327,6 +329,26 @@ def view_uuid():
 
     return jsonify(uuid=str(uuid.uuid4()))
 
+
+@app.route("/passwords")
+def view_passwords():
+    """Return a group of random strings.
+    ---
+    tags:
+      - Dynamic data
+    produces:
+      - application/json
+    responses:
+      200:
+        description: A groups of random strings.
+    """
+    n = 1
+    max = 10
+    _passwords = dict()
+    while n <= max:
+        _passwords[n] = random_password()
+        n = n + 1
+    return _passwords
 
 @app.route("/headers")
 def view_headers():
