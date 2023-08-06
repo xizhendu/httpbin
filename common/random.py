@@ -44,7 +44,7 @@ def random_password(n=12):
 	lowers = ''.join([random.choice(string.ascii_lowercase) for _ in range(lowers_n)])
 	uppers = ''.join([random.choice(string.ascii_uppercase) for _n in range(uppers_n)])
 	numbers = ''.join([random.choice(string.digits) for _n in range(numbers_n)])
-	symbols = ''.join([random.choice('#/%!?') for _n in range(symbols_n)])
+	symbols = ''.join([random.choice('#-_${}/%!?') for _n in range(symbols_n)])
 	_l = list(lowers + uppers + numbers + symbols)
 	random.shuffle(_l)
 	return ''.join(_l)
