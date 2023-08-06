@@ -34,6 +34,12 @@ from werkzeug.http import parse_authorization_header
 from flasgger import Swagger, NO_SANITIZER
 
 from common.random import random_password
+from common.random import person_name
+from common.random import random_md5
+from common.random import random_sha256
+from common.random import random_sha512
+from common.random import random_uuid
+
 
 from . import filters
 from .helpers import (
@@ -330,8 +336,8 @@ def view_uuid():
     return jsonify(uuid=str(uuid.uuid4()))
 
 
-@app.route("/passwords")
-def view_passwords():
+@app.route("/random/passwords")
+def view_random_passwords():
     """Return a group of random strings.
     ---
     tags:
@@ -343,13 +349,94 @@ def view_passwords():
         description: A groups of random strings.
     """
 
-    n = 1
-    max = 10
+    n = 0
     _passwords = dict()
-    while n <= max:
-        _passwords[n] = random_password()
+    while n <= 10:
+        _name = person_name()
+        _passwords[_name] = random_password()
         n = n + 1
     return _passwords
+
+
+@app.route("/random/md5")
+def view_random_md5():
+    """Return a random md5 strings.
+    ---
+    tags:
+      - Dynamic data
+    produces:
+      - application/json
+    responses:
+      200:
+        description: a random md5 strings.
+    """
+    n = 1
+    _md5s = dict()
+    while n <= 10:
+        _md5s[n] = random_md5()
+        n = n + 1
+    return _md5s
+
+
+@app.route("/random/sha256")
+def view_random_sha256():
+    """Return a random sha256 strings.
+    ---
+    tags:
+      - Dynamic data
+    produces:
+      - application/json
+    responses:
+      200:
+        description: a random sha256 strings.
+    """
+    n = 1
+    _sha256s = dict()
+    while n <= 10:
+        _sha256s[n] = random_sha256()
+        n = n + 1
+    return _sha256s
+
+
+@app.route("/random/sha512")
+def view_random_sha512():
+    """Return a random sha256 strings.
+    ---
+    tags:
+      - Dynamic data
+    produces:
+      - application/json
+    responses:
+      200:
+        description: a random sha256 strings.
+    """
+    n = 1
+    _sha512s = dict()
+    while n <= 10:
+        _sha512s[n] = random_sha512()
+        n = n + 1
+    return _sha512s
+
+
+@app.route("/random/uuid")
+def view_random_uuid():
+    """Return a random uuid5 strings.
+    ---
+    tags:
+      - Dynamic data
+    produces:
+      - application/json
+    responses:
+      200:
+        description: a random uuid5 strings.
+    """
+    n = 1
+    _uuids = dict()
+    while n <= 10:
+        _uuids[n] = random_uuid()
+        n = n + 1
+    return _uuids
+
 
 @app.route("/headers")
 def view_headers():

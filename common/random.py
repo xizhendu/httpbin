@@ -2,12 +2,13 @@
 
 import random
 import string
+import uuid
 
 def random_string(n=16):
 	_string = ''.join([random.choice(string.ascii_lowercase + string.digits) for _n in range(n)])
 	return _string
 
-def random_password():
+def random_password_deprecated():
 	lowers = ''.join([random.choice(string.ascii_lowercase) for _n in range(5)])
 	uppers = ''.join([random.choice(string.ascii_uppercase) for _n in range(3)])
 	numbers = ''.join([random.choice(string.digits) for _n in range(1)])
@@ -15,6 +16,39 @@ def random_password():
 	_l = list(lowers + uppers + numbers + symbols)
 	random.shuffle(_l)
 	return ''.join(_l)
+
+def random_md5():
+	return ''.join([random.choice(string.hexdigits.lower()) for _ in range(32)])
+
+def random_sha256():
+	return ''.join([random.choice(string.hexdigits.lower()) for _ in range(64)])
+
+def random_sha512():
+	return ''.join([random.choice(string.hexdigits.lower()) for _ in range(128)])
+
+def random_uuid():
+	return str(uuid.uuid5(uuid.uuid4(),random_md5()))
+
+def random_password(n=12):
+	if n < 8:
+		n = 12
+		symbols_n = 1
+		numbers_n = 2
+		uppers_n = 2
+		lowers_n = 7
+	else:
+		symbols_n = 1
+		numbers_n = 2
+		uppers_n = int( n / 4)
+		lowers_n = n - uppers_n - 3
+	lowers = ''.join([random.choice(string.ascii_lowercase) for _ in range(lowers_n)])
+	uppers = ''.join([random.choice(string.ascii_uppercase) for _n in range(uppers_n)])
+	numbers = ''.join([random.choice(string.digits) for _n in range(numbers_n)])
+	symbols = ''.join([random.choice('#/%!?') for _n in range(symbols_n)])
+	_l = list(lowers + uppers + numbers + symbols)
+	random.shuffle(_l)
+	return ''.join(_l)
+
 
 def dicom_patient_id():
 	return str(random.randint(2022030001, 2022039999))
