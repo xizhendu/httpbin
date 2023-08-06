@@ -336,7 +336,7 @@ def view_uuid():
     return jsonify(uuid=str(uuid.uuid4()))
 
 
-@app.route("/random/passwords")
+@app.route("/random/password")
 def view_random_passwords():
     """Return a group of random strings.
     ---
@@ -351,9 +351,8 @@ def view_random_passwords():
 
     n = 0
     _passwords = dict()
-    while n <= 10:
-        _name = person_name()
-        _passwords[_name] = random_password()
+    while n <= 9:
+        _passwords[n] = random_password()
         n = n + 1
     return _passwords
 
@@ -370,9 +369,9 @@ def view_random_md5():
       200:
         description: a random md5 strings.
     """
-    n = 1
+    n = 0
     _md5s = dict()
-    while n <= 10:
+    while n <= 9:
         _md5s[n] = random_md5()
         n = n + 1
     return _md5s
@@ -390,9 +389,9 @@ def view_random_sha256():
       200:
         description: a random sha256 strings.
     """
-    n = 1
+    n = 0
     _sha256s = dict()
-    while n <= 10:
+    while n <= 9:
         _sha256s[n] = random_sha256()
         n = n + 1
     return _sha256s
@@ -410,9 +409,9 @@ def view_random_sha512():
       200:
         description: a random sha256 strings.
     """
-    n = 1
+    n = 0
     _sha512s = dict()
-    while n <= 10:
+    while n <= 9:
         _sha512s[n] = random_sha512()
         n = n + 1
     return _sha512s
@@ -430,9 +429,9 @@ def view_random_uuid():
       200:
         description: a random uuid5 strings.
     """
-    n = 1
+    n = 0
     _uuids = dict()
-    while n <= 10:
+    while n <= 9:
         _uuids[n] = random_uuid()
         n = n + 1
     return _uuids
